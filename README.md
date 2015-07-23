@@ -2,18 +2,16 @@ Pacman search
 
 Neste jogo o Pacman (P) está posicionado em um grid, ele deve encontrar um caminho para a comida (C) utilizando alguma estratégia de busca a partir do seguinte formato de input:
 
-
-
-    3 9  
-    5 1  
-    7 20  
-    ====================
-    =--------------=---=  
-    =-==-==-==-==-==-=-=  
-    =--------P-------=-=  
-    ==================-=  
-    =C-----------------=  
-    ====================  
+    P=(3,9)
+    C=(5,1)
+    7x20
+    ████████████████████
+    █··············█···█  
+    █·██·██·██·██·██·█·█  
+    █········☻·······█·█  
+    ██████████████████·█  
+    █ϖ·················█  
+    ████████████████████  
 
 * A primeira linha identifica a coordenada do Pacman na grid no formato linha coluna.
 * A segunda linha identifica a coordenada da comida na grid no formato linha coluna.
@@ -24,15 +22,15 @@ A partir do input informado devolva como output um possível caminho para o Pacm
 
 
 
-    3 9  
-    5 1  
-    7 20  
-    ====================
-    =--------------=***=  
-    =-==-==-==-==-==*=*=  
-    =--------P*******=*=  
-    ==================*=  
-    =C*****************=  
-    ====================  
+    P=(3,9)
+    C=(5,1)
+    7x20
+    ████████████████████
+    █··············█***█  
+    █·██·██·██·██·██*█*█  
+    █········☻*******█*█  
+    ██████████████████*█  
+    █ϖ*****************█  
+    ████████████████████  
 
 O Output obedece o mesmo formato do input inicial com a adição do caminho a ser percorrido pelo Pacman para chegar até a comida, este representado pelo o caractere "*".
