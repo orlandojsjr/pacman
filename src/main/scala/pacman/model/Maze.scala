@@ -5,15 +5,15 @@ import main.scala.pacman.helper.MazeHelper
 
 case class Maze (food: Food) {
   
-  private var map = ofDim[Int](30,30);
+  private var _map = MazeHelper.draw
   
-  def init {
-    map = MazeHelper.draw
-  }
+  def map = _map
   
-  def isADot(position: Position) = map(position.line)(position.column) equals '·'
+  private def isADot(position: Position) = _map(position.line)(position.column) equals '·'
   
-  def isAConner(position: Position) = map(position.line)(position.column) equals '█'
+  private def isAConner(position: Position) = _map(position.line)(position.column) equals '█'
+  
+  def isAValidPosition(position: Position) = isADot(position) || isAFood(position)
   
   def isAFood(position: Position) = this.food.position equals position
 }

@@ -23,4 +23,6 @@ case class Position (line: Int = 0, column : Int = 0) extends Equals {
       case _ => false
     }
   }
+  
+  override def toString(): String = "(" + line + ", " + column + ")";
 }
