@@ -18,4 +18,30 @@ class PositionSpec extends Specification {
       positionOne equals positionTwo must beFalse
     }
   }
+  
+  "Position" >> {
+    "must gimme right position" >> {
+      val position = new Position(1,1)
+      val expected = new Position(1,2)
+      expected equals position.right must beTrue
+    }
+    
+    "must gimme left position" >> {
+      val position = new Position(2,2)
+      val expected = new Position(2,1)
+      expected equals position.left must beTrue
+    }
+    
+    "must gimme up position" >> {
+      val position = new Position(2,2)
+      val expected = new Position(1,2)
+      expected equals position.up must beTrue
+    }
+    
+    "must gimme down position" >> {
+      val position = new Position(2,2)
+      val expected = new Position(3,2)
+      expected equals position.down must beTrue
+    }
+  }
 }
