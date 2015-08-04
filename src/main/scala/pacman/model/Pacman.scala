@@ -7,37 +7,37 @@ import scala.collection.mutable.Set
 case class Pacman(initialPosition: Position) {
 
   private val positionsIhaveBeen = Set[String]()
-  private var positionsStack = Stack[Position](initialPosition)
+  private var _pathToFood = Stack[Position](initialPosition)
 
-  def findPathFood(maze: Maze) = {
-    while (!maze.isAFood(positionsStack.top)) {
-      this.goToNextStep(maze)
+  def findPathToFood(maze: Maze) = {
+    while (!maze.isAFood(_pathToFood.top)) {
+      this.goToNextPosition(maze)
     }
-    positionsStack
+    _pathToFood
   }
   
-  def pathToFood = positionsStack
+  def pathToFood = _pathToFood
 
-  private def goToNextStep(maze: Maze) {
-    val nextPosition = defineNextPositionStep(maze)
+  private def goToNextPosition(maze: Maze) {
+    val nextPosition = findNextPosition(maze)
     nextPosition.isDefined match {
-      case true  => positionsStack.push(nextPosition.get)
-      case false => if (positionsStack.size > 0) positionsStack.pop()
+      case true  => _pathToFood.push(nextPosition.get)
+      case false => if (_pathToFood.size > 0) _pathToFood.pop()
     }
   }
 
-  private def defineNextPositionStep(maze: Maze) = {
-    val actualPosition = positionsStack.top
-    var nextPosition = tryGetNextPositionStep(actualPosition.right, maze)
+  private def findNextPosition(maze: Maze) = {
+    val actualPosition = _pathToFood.top
+    var nextPosition = tryGetNextPosition(actualPosition.right, maze)
 
-    if (!nextPosition.isDefined) nextPosition = tryGetNextPositionStep(actualPosition.up, maze)
-    if (!nextPosition.isDefined) nextPosition = tryGetNextPositionStep(actualPosition.left, maze)
-    if (!nextPosition.isDefined) nextPosition = tryGetNextPositionStep(actualPosition.down, maze)
+    if (!nextPosition.isDefined) nextPosition = tryGetNextPosition(actualPosition.up, maze)
+    if (!nextPosition.isDefined) nextPosition = tryGetNextPosition(actualPosition.left, maze)
+    if (!nextPosition.isDefined) nextPosition = tryGetNextPosition(actualPosition.down, maze)
 
     nextPosition
   }
 
-  private def tryGetNextPositionStep(candidateNextPosition: Position, maze: Maze): Option[Position] = {
+  private def tryGetNextPosition(candidateNextPosition: Position, maze: Maze): Option[Position] = {
     !iHaveBeenHere(candidateNextPosition) && maze.isAValidPosition(candidateNextPosition) match {
       case true => {
         pushPositionIHaveBeen(candidateNextPosition)

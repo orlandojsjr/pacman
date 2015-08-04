@@ -9,12 +9,12 @@ import main.scala.pacman.model.Pacman
 object Game {
   
   def main(args: Array[String]) { 
-    val food = new Food(new Position(5,1))
+    val food = new Food(new Position(1,1))
     val maze = new Maze(food)
-    val pacman = new Pacman(new Position(2,1))
+    val pacman = new Pacman(new Position(5,18))
 
-    MazeHelper.screen(maze, pacman)
-    pacman.findPathFood(maze)
-    MazeHelper.screen(maze, pacman)
+    MazeHelper.show(maze, pacman)
+    pacman.findPathToFood(maze)
+    MazeHelper.show(maze, pacman)
   }
 }
