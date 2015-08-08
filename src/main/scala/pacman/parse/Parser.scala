@@ -9,13 +9,12 @@ import main.scala.pacman.model.Maze
 
 object Parser {
 
-  private val _file = "/home/orlando/workspace/pacman/src/main/resources/maze-2"
   private val pacmanPattern = """P=\([1-9][0-9]?\,[1-9][0-9]?\)""".r
   private val foodPattern = """C=\([1-9][0-9]?\,[1-9][0-9]?\)""".r
   private val gridSizePattern = """[1-9][0-9]?x[1-9][0-9]?""".r
   private val numberPattern = """[1-9][0-9]?""".r
 
-  def process() : (Maze, Pacman) = {
+  def process(file: String) : (Maze, Pacman) = {
 
     var maze: Maze = null
     var pacman: Pacman = null
@@ -51,6 +50,4 @@ object Parser {
     val result = numberPattern.findAllIn(source).toList
     new Position(result(0).toInt, result(1).toInt)
   }
-
-  private def file = _file //+ scala.util.Random.nextInt(2)
 }

@@ -5,10 +5,18 @@ import main.scala.pacman.model.Maze
 import main.scala.pacman.model.Food
 import main.scala.pacman.model.Position
 import org.specs2.mutable.Specification
+import org.specs2.specification.Before
+import main.scala.pacman.parse.Parser
+import org.specs2.specification.BeforeEach
 
-class MazeSpec extends Specification {
+class MazeSpec extends Specification with BeforeEach {
   
-  val maze = new Maze(new Food(new Position(1,1))); 
+  var maze: Maze = _
+
+  override def before() {
+    val file = "/home/orlando/workspace/pacman/src/main/resources/maze-1"
+    maze = Parser.process(file)._1
+  }
   
   "Maze" >> {
     "valid dot position" >> {
@@ -22,7 +30,7 @@ class MazeSpec extends Specification {
     }
     
     "valid food position" >> {
-      val food = new Position(1,1)
+      val food = new Position(5,5)
       maze.isAFood(food) must beTrue
     }
     
