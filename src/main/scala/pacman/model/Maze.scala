@@ -3,11 +3,13 @@ package main.scala.pacman.model
 import Array._
 import main.scala.pacman.helper.MazeHelper
 
-case class Maze (food: Food) {
+case class Maze (var food: Food) {
   
-  private var _map = MazeHelper.draw
+  var _map: Array[Array[Char]] = _
   
   def map = _map
+
+  def map(m: Array[Array[Char]]){ _map = m }
   
   private def isADot(position: Position) = _map(position.line)(position.column) equals '·'
   

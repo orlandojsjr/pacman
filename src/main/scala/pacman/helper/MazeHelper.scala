@@ -9,27 +9,6 @@ import main.scala.pacman.model.Pacman
 
 object MazeHelper {
 
-  private val file = "/home/orlando/workspace/pacman/src/main/resources/maze"
-
-  def draw = {
-    val map = ofDim[Char](7, 20)
-    val lines = Source.fromFile(file).getLines
-    var x, y = 0
-    lines.foreach {
-      line =>
-        {
-          y = 0
-          line.foreach {
-            str =>
-              map(x)(y) = str
-              y += 1
-          }
-          x += 1
-        }
-    }
-    map
-  }
-
   def show(maze: Maze, pacman: Pacman) {
     blankLine
     putPathToFood(maze, pacman)
