@@ -15,7 +15,7 @@ case class Maze (var food: Food) {
   
   private def isAConner(position: Position) = _map(position.line)(position.column) equals '█'
   
-  def isAValidPosition(position: Position) = isADot(position) || isAFood(position)
+  def canIStayHere(position: Position) = isADot(position) || isAFood(position)
   
   def isAFood(position: Position) = this.food.position equals position
 }

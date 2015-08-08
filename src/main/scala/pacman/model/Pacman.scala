@@ -38,7 +38,7 @@ case class Pacman(initialPosition: Position) {
   }
 
   private def tryGetNextPosition(candidateNextPosition: Position, maze: Maze): Option[Position] = {
-    !iHaveBeenHere(candidateNextPosition) && maze.isAValidPosition(candidateNextPosition) match {
+    !iHaveBeenHere(candidateNextPosition) && maze.canIStayHere(candidateNextPosition) match {
       case true => {
         pushPositionIHaveBeen(candidateNextPosition)
         Option(candidateNextPosition)
