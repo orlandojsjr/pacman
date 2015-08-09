@@ -6,6 +6,8 @@ import main.scala.pacman.model.Maze
 import scala.collection.mutable.Stack
 import main.scala.pacman.model.Position
 import main.scala.pacman.model.Pacman
+import main.scala.pacman.model.Food
+import main.scala.pacman.model.GameComponent
 
 object MazeHelper {
 
@@ -14,15 +16,16 @@ object MazeHelper {
     putPathToFood(maze, pacman)
     putPacman(maze, pacman)
     putFood(maze, pacman)
+    showConfig(pacman)
+    showConfig(maze.food)
+    showConfig(maze)
     showMaze(maze)
   }
 
   private def blankLine() { println("") }
 
   private def putPathToFood(maze: Maze, pacman: Pacman) {
-    if (!pacman.pathToFood.isEmpty) {
-      pacman.pathToFood.foreach { x => maze.map(x.line)(x.column) = '*' }
-    }
+    pacman.pathToFood.foreach { x => maze.map(x.line)(x.column) = '*' }
   }
 
   private def putPacman(maze: Maze, pacman: Pacman) {
@@ -31,6 +34,10 @@ object MazeHelper {
 
   private def putFood(maze: Maze, pacman: Pacman) {
     maze.map(maze.food.position.line)(maze.food.position.column) = 'ϖ'
+  }
+
+  private def showConfig(displayable: GameComponent) {
+    println(displayable.displayableValue)
   }
 
   private def showMaze(maze: Maze) {

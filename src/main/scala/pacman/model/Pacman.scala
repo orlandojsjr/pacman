@@ -4,19 +4,21 @@ import Array._
 import scala.collection.mutable.Stack
 import scala.collection.mutable.Set
 
-case class Pacman(initialPosition: Position) {
+case class Pacman(initialPosition: Position) extends GameComponent {
 
   private val positionsIhaveBeen = Set[String]()
   private var _pathToFood = Stack[Position](initialPosition)
 
   def findPathToFood(maze: Maze) = {
-    while (!maze.isAFood(_pathToFood.top)) {
+    while (!maze.isAFood(currentPosition)) {
       this.goToNextPosition(maze)
     }
     _pathToFood
   }
-  
+
   def pathToFood = _pathToFood
+
+  override def displayableValue = s"P=(${initialPosition.line}x${initialPosition.column})"
 
   private def goToNextPosition(maze: Maze) {
     val nextPosition = findNextPosition(maze)
@@ -52,4 +54,6 @@ case class Pacman(initialPosition: Position) {
   }
 
   private def iHaveBeenHere(position: Position) = positionsIhaveBeen(position.toString)
+
+  private def currentPosition = _pathToFood.top
 }
