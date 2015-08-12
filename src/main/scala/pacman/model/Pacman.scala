@@ -29,21 +29,18 @@ case class Pacman(initialPosition: Position) extends GameComponent {
   }
 
   private def findNextPosition(maze: Maze) = {
-    val actualPosition = _pathToFood.top
-    var nextPosition = tryGetNextPosition(actualPosition.right, maze)
-
-    if (!nextPosition.isDefined) nextPosition = tryGetNextPosition(actualPosition.up, maze)
-    if (!nextPosition.isDefined) nextPosition = tryGetNextPosition(actualPosition.left, maze)
-    if (!nextPosition.isDefined) nextPosition = tryGetNextPosition(actualPosition.down, maze)
-
+    var nextPosition = tryGetNextPosition(currentPosition.right, maze)
+    if (!nextPosition.isDefined) nextPosition = tryGetNextPosition(currentPosition.up, maze)
+    if (!nextPosition.isDefined) nextPosition = tryGetNextPosition(currentPosition.left, maze)
+    if (!nextPosition.isDefined) nextPosition = tryGetNextPosition(currentPosition.down, maze)
     nextPosition
   }
 
-  private def tryGetNextPosition(candidateNextPosition: Position, maze: Maze): Option[Position] = {
-    !iHaveBeenHere(candidateNextPosition) && maze.canIStayHere(candidateNextPosition) match {
+  private def tryGetNextPosition(nextPositionCandidate: Position, maze: Maze): Option[Position] = {
+    !iHaveBeenHere(nextPositionCandidate) && maze.canIMoveHere(nextPositionCandidate) match {
       case true => {
-        pushPositionIHaveBeen(candidateNextPosition)
-        Option(candidateNextPosition)
+        pushPositionIHaveBeen(nextPositionCandidate)
+        Option(nextPositionCandidate)
       }
       case _ => None
     }

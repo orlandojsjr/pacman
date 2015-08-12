@@ -21,12 +21,12 @@ class MazeSpec extends Specification with BeforeEach {
   "Maze" >> {
     "valid dot position" >> {
       val dot = new Position(2,1)
-      maze.canIStayHere(dot) must beTrue
+      maze.canIMoveHere(dot) must beTrue
     }
     
     "invalid dot position" >> {
       val dot = new Position(0,0)
-      maze.canIStayHere(dot) must beFalse
+      maze.canIMoveHere(dot) must beFalse
     }
     
     "valid food position" >> {

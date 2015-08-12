@@ -15,7 +15,7 @@ case class Maze (var food: Food) extends GameComponent {
   
   private def isAConner(position: Position) = _map(position.line)(position.column) equals '█'
   
-  def canIStayHere(position: Position) = isADot(position) || isAFood(position)
+  def canIMoveHere(position: Position) = isADot(position) || isAFood(position)
   
   def isAFood(position: Position) = this.food.position equals position
 
