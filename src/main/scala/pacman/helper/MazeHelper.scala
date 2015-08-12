@@ -22,7 +22,7 @@ object MazeHelper {
     showMaze(maze)
   }
 
-  private def blankLine() { println("") }
+  private def blankLine { println("") }
 
   private def putPathToFood(maze: Maze, pacman: Pacman) {
     pacman.pathToFood.foreach { x => maze.map(x.line)(x.column) = '*' }
