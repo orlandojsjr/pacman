@@ -8,12 +8,13 @@ import org.specs2.mutable.Specification
 import org.specs2.specification.Before
 import main.scala.pacman.parse.Parser
 import org.specs2.specification.BeforeEach
+import org.specs2.specification.BeforeAll
 
-class MazeSpec extends Specification with BeforeEach {
+class MazeSpec extends Specification with BeforeAll {
   
   var maze: Maze = _
 
-  override def before() {
+  override def beforeAll {
     val file = "/home/orlando/workspace/pacman/src/main/resources/maze-1"
     maze = Parser.process(file)._1
   }
