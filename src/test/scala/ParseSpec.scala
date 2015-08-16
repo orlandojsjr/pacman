@@ -38,8 +38,8 @@ class ParseSpec extends Specification with BeforeAll {
     "must find maze size" >> {
       val file = "/home/orlando/workspace/pacman/src/main/resources/maze-1"
       val result = Parser.process(file)
-      val expectedLines: Int = 7
-      val expextedColumns:Int = 20
+      val expectedLines = 7
+      val expextedColumns = 20
       expectedLines equals maze.map.length
       expextedColumns equals maze.map(0).length
     }
